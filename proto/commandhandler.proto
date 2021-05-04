@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package commandhandler_v1;
+
+import "commands/order.proto";
+
+service CommandHandler {
+  rpc Apply(CommandRequest) returns (CommandResponse) {}
+}
+
+message CommandRequest {
+  oneof command {
+    order_v1.PlaceOrder place_order = 1;
+  }
+}
+
+message CommandResponse {
+  string aggregate_id = 1;
+}

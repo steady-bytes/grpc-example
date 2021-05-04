@@ -1,0 +1,17 @@
+syntax = "proto3";
+/*
+ * __`Command`__: A command is an action the system can carry out. It
+ * may result in one or more tasks to be carried out. These are related 
+ * to business functions that should be carried out. They may also 
+ * sometimes relate to a user action.
+ */
+package order_v1;
+
+// A user may want to place an order for one or more items.
+message PlaceOrder {}
+
+// A user may want to cancel an order they recently have placed.
+message CancelOrder {}
+
+// A user may want to get the status of an order
+message TrackOrder {}

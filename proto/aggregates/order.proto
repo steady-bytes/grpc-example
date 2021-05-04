@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package order_v1;
+
+/*
+ * `Order` is an aggregate type, meaning that it's the top level collection
+ * of many different fields that can also include other value objects. A native
+ * type can be validated, and so can value objects.
+ */
+message Order {
+  string id = 1;
+  
+  // items a user wishes to order
+  repeated Item items = 3;
+
+  // users payment method of their choice for this order
+  PaymentMethod payment_method = 4;
+}
+
+message Item {
+  string id = 1;
+  string name = 2;
+}
+
+message PaymentMethod {
+  string id = 1;
+}

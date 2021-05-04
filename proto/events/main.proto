@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package events_v1;
+
+import "events/order.proto";
+
+message EventType {
+  oneof type {
+    order_events_v1.Event order_events = 1; 
+  }
+}

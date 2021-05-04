@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package eventstore_v1;
+
+import "aggregates/main.proto";
+import "events/main.proto";
+
+service EventStore {
+  rpc Store(StoreEventRequest) returns (StoreEventResponse) {}
+  rpc Query(QueryEventStoreRequest) returns(QueryEventStoreResponse) {}
+}
+
+message Event {
+  string id = 1;
+  string aggregate_id = 2;
+  
+  string date = 3;
+  string published_date = 4;
+
+  aggregates_v1.AggregateType aggregate_type = 5;
+  events_v1.EventType event_type = 6;
+
+  string data = 7;
+}
+
+message StoreEventRequest {
+  Event event = 1;
+}
+
+message StoreEventResponse {
+  string aggregate_id = 1;
+  string event_id = 2;
+}
+
+message QueryEventStoreRequest {
+  map<string, string> params = 1;
+}
+
+message QueryEventStoreResponse {
+  repeated Event events = 1;
+}
+

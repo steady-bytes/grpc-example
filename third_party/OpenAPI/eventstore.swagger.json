@@ -1,0 +1,126 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "eventstore.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {},
+  "definitions": {
+    "aggregates_v1AggregateType": {
+      "type": "string",
+      "enum": [
+        "AGGREGATE_TYPE_INVALID",
+        "USER",
+        "ORDER"
+      ],
+      "default": "AGGREGATE_TYPE_INVALID",
+      "title": "Aggreate codes"
+    },
+    "events_v1EventType": {
+      "type": "object",
+      "properties": {
+        "order_events": {
+          "$ref": "#/definitions/order_events_v1Event"
+        }
+      }
+    },
+    "eventstore_v1Event": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "aggregate_id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "published_date": {
+          "type": "string"
+        },
+        "aggregate_type": {
+          "$ref": "#/definitions/aggregates_v1AggregateType"
+        },
+        "event_type": {
+          "$ref": "#/definitions/events_v1EventType"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "eventstore_v1QueryEventStoreResponse": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/eventstore_v1Event"
+          }
+        }
+      }
+    },
+    "eventstore_v1StoreEventResponse": {
+      "type": "object",
+      "properties": {
+        "aggregate_id": {
+          "type": "string"
+        },
+        "event_id": {
+          "type": "string"
+        }
+      }
+    },
+    "order_events_v1Event": {
+      "type": "string",
+      "enum": [
+        "EVENT_INVALID",
+        "EVENT_ORDER_PLACED",
+        "EVENT_PAYMENT_RECEIVED",
+        "EVENT_ITEM_INVENTORY_LOCATED",
+        "EVENT_ALL_ITEMS_IN_ORDER_INVENTORIED"
+      ],
+      "default": "EVENT_INVALID"
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

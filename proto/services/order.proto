@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package order_v1;
+
+import "aggregates/order.proto";
+
+service OrderService {
+  rpc Query(QueryOrdersRequest) returns (QueryOrdersResponse) {}
+}
+
+message QueryOrdersRequest {
+  map<string, string> params = 1;
+}
+
+message QueryOrdersResponse {
+  repeated order_v1.Order orders = 1;
+}

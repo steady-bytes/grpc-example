@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package order_events_v1;
+
+enum Event {
+  EVENT_INVALID = 0;
+  EVENT_ORDER_PLACED = 1;
+  EVENT_PAYMENT_RECEIVED = 2;
+  EVENT_ITEM_INVENTORY_LOCATED = 3;
+  EVENT_ALL_ITEMS_IN_ORDER_INVENTORIED = 4; 
+}
+
+message OrderPlaced {}
+
+message PaymentReceived {}
+
+message ItemInventoryLocated {}
+
+message AllItemsInOrderInventoried {}
+
+message ItemInOrderDelivered {}
+
+message AllItemsInOrderDelivered {}

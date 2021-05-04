@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package aggregates_v1;
+
+// Aggreate codes
+enum AggregateType {
+  AGGREGATE_TYPE_INVALID = 0;
+  USER = 2;
+  ORDER = 3;
+}
