@@ -4,8 +4,27 @@ package commandhandler_v1;
 
 import "commands/order.proto";
 
+/* TODO -> need to look into how modules work for this */
+option go_package = "github.com/gogo/grpc-example/proto;example";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+  info: {
+    version: "1.0";
+  };
+  external_docs: {
+    url: "https://github.com/steady-bytes/grpc-example";
+    description: "gRPC setup";
+  }
+  schemes: HTTPS;
+};
+
 service CommandHandler {
-  rpc Apply(CommandRequest) returns (CommandResponse) {}
+  rpc Apply(CommandRequest) returns (CommandResponse) {
+    option (google.api.http) = {
+      post: "/api/v1/commands"
+      body: "*"
+    };
+  }
 }
 
 message CommandRequest {
