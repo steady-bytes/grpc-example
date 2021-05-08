@@ -1,9 +1,11 @@
 syntax = "proto3";
 
-package eventstore_v1;
+package eventstore;
 
 import "aggregates/main.proto";
 import "events/main.proto";
+
+option go_package = "github.com/steady-bytes/grpc-example/proto;eventstore";
 
 service EventStore {
   rpc Store(StoreEventRequest) returns (StoreEventResponse) {}

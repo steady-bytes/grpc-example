@@ -30,7 +30,7 @@
         }
       }
     },
-    "eventstore_v1Event": {
+    "eventstoreEvent": {
       "type": "object",
       "properties": {
         "id": {
@@ -56,18 +56,18 @@
         }
       }
     },
-    "eventstore_v1QueryEventStoreResponse": {
+    "eventstoreQueryEventStoreResponse": {
       "type": "object",
       "properties": {
         "events": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/eventstore_v1Event"
+            "$ref": "#/definitions/eventstoreEvent"
           }
         }
       }
     },
-    "eventstore_v1StoreEventResponse": {
+    "eventstoreStoreEventResponse": {
       "type": "object",
       "properties": {
         "aggregate_id": {

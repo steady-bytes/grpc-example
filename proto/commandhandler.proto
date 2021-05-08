@@ -1,11 +1,20 @@
 syntax = "proto3";
 
-package commandhandler_v1;
+package commandhandler;
+
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "github.com/mwitkow/go-proto-validators/validator.proto";
 
 import "commands/order.proto";
 
-/* TODO -> need to look into how modules work for this */
-option go_package = "github.com/gogo/grpc-example/proto;example";
+option go_package = "github.com/steady-bytes/grpc-example/proto;commandhandler";
+
+// Enable custom Marshal method.
+option (gogoproto.marshaler_all) = true;
+// Enable custom Unmarshal method.
+option (gogoproto.unmarshaler_all) = true;
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
   info: {
@@ -19,7 +28,7 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 };
 
 service CommandHandler {
-  rpc Apply(CommandRequest) returns (CommandResponse) {
+  rpc Apply(Command) returns (Response) {
     option (google.api.http) = {
       post: "/api/v1/commands"
       body: "*"
@@ -27,12 +36,19 @@ service CommandHandler {
   }
 }
 
-message CommandRequest {
-  oneof command {
-    order_v1.PlaceOrder place_order = 1;
-  }
+message Command {
+  Code type = 1;
+
+  order.PlaceOrder place_order = 2;
 }
 
-message CommandResponse {
+enum Code {
+  INVALID = 0; 
+  PLACE_ORDER = 1;
+  SAVE_USER = 2;
+  SAVE_ITEM = 3;
+}
+
+message Response {
   string aggregate_id = 1;
 }

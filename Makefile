@@ -56,6 +56,7 @@ Mgoogle/api/annotations.proto=github.com/gogo/googleapis/google/api,\
 Mgoogle/protobuf/field_mask.proto=github.com/gogo/protobuf/types:\
 ./gen \
 		$(file)
+
 	sed -i.bak "s/empty.Empty/types.Empty/g" gen/$(file_no_ext).pb.gw.go && rm gen/$(file_no_ext).pb.gw.go.bak
 
 	# Generate static assets for OpenAPI UI

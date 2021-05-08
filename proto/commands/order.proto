@@ -5,7 +5,9 @@ syntax = "proto3";
  * to business functions that should be carried out. They may also 
  * sometimes relate to a user action.
  */
-package order_v1;
+package order;
+
+option go_package = "github.com/steady-bytes/grpc-example/proto/commands;order";
 
 // A user may want to place an order for one or more items.
 message PlaceOrder {}
